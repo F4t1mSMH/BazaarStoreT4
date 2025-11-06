@@ -1,5 +1,6 @@
 package com.bazaarstores.stepDefinitions;
 
+import com.bazaarstores.pages.AllPages;
 import com.bazaarstores.utilities.ConfigReader;
 import com.bazaarstores.utilities.Driver;
 import io.cucumber.java.After;
@@ -9,12 +10,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
-
-//    @Before
-//    public void setUp(Scenario scenario) {
-//        System.out.println("Starting scenario: " + scenario.getName());
-//        Driver.getDriver().get(ConfigReader.getBaseUrl());
-//    }
+    AllPages allPages = new AllPages();
+    @Before
+    public void setUp(Scenario scenario) {
+        System.out.println("Starting scenario: " + scenario.getName());
+        Driver.getDriver().get(ConfigReader.getBaseUrl());
+    }
 
     @After
     public void tearDown(Scenario scenario) {
@@ -30,4 +31,20 @@ public class Hooks {
         
         Driver.quitDriver();
     }
+    @Before("@CustomerUS")
+    public void loginBeforeCustomerTests() {
+        System.out.println("Logging in before running @customer scenario...");
+
+        Driver.getDriver().get(ConfigReader.getBaseUrl() + "/login");
+
+        allPages.getLoginPage().login(
+                ConfigReader.getCustomerEmail(),
+                ConfigReader.getDefaultPassword()
+        );
+
+        allPages.getCustomerPage().isCustomerPageDisplayed();
+
+        System.out.println(" Login successful, ready for customer scenarios.");
+    }
+
 }
