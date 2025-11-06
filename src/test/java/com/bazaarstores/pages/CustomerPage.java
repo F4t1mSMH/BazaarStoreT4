@@ -25,7 +25,8 @@ public class CustomerPage extends BasePage {
     private final By heartIcon = By.cssSelector(".favorite-icon");
     private final By filledHeartIcon = By.cssSelector(".favorite-icon.active");
     private final By clickFavoritesPage = By.linkText("My Favorites");
-
+private final  By errorFavoritesMessage  =By.xpath("//*[.='Error!']");
+private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavoritesMessage to accpet or get the erorr message
     // Verify page is displayed
     public boolean isCustomerPageDisplayed() {
         return isDisplayed(productContainer);
@@ -93,19 +94,38 @@ public class CustomerPage extends BasePage {
     }
 
     //-----------------------------------------------------------------
-    public void clickHeartIconOnFirstProduct() {
-        List<WebElement> hearts = findElements(heartIcon);
+    public void clickHeartIconOnFirstProduct() throws InterruptedException {
+        List<WebElement> hearts =Driver.getDriver(). findElements(heartIcon);
         if (!hearts.isEmpty()) {
-            hearts.get(0).click();
+            hearts.getFirst().click();
+            Thread.sleep(3000);
         } else {
             throw new RuntimeException(" No heart icons found on the customer page!");
         }
-
+    }
+        public boolean isProductMarkedAsFavorite() {
+            List<WebElement> filledHearts = Driver.getDriver().findElements(filledHeartIcon);
+            return !filledHearts.isEmpty();
         }
+
     public void clickFavoritesLink() {
-        WebElement clickMyFavorites = findElement(clickFavoritesPage);
+        WebElement clickMyFavorites = Driver.getDriver().findElement(clickFavoritesPage);
         clickMyFavorites.click();
 
+    }
+
+    // Check if error message is displayed
+    public boolean isAlreadyFavoriteMessageDisplayed() {
+        try {
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(3));
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(errorFavoritesMessage)).isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+    public void ClickCoolToAccpetAlreadyFavoriateMessage(){
+        WebElement ClickCoolBtn = Driver.getDriver().findElement(CoolBtn);
+        ClickCoolBtn.click();
     }
     }
 

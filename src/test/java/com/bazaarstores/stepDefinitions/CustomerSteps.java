@@ -11,22 +11,27 @@ import org.junit.Assert;
 public class CustomerSteps {
     AllPages allPages = new AllPages();
     @Given("User is already logged in")
+
     public void user_is_already_logged_in() {
         allPages.getLoginPage()
                 .enterEmail(ConfigReader.getCustomerEmail())
                 .enterPassword(ConfigReader.getDefaultPassword());
         allPages.getLoginPage().clickLoginButton();
     }
+
     @Given("Customer is on the customer page")
     public void customer_is_on_the_customer_page() {
-        Assert.assertTrue("Dashboard as customer should be displayed",
+        Assert.assertTrue("Home page should be displayed",
                 allPages.getCustomerPage().isCustomerPageDisplayed());
     }
+
     @When("Customer observes each product card")
     public void customer_observes_each_product_card() {
         System.out.println(" Customer is observing the product cards...!");
         allPages.getCustomerPage().areAllProductsVisible();
     }
+
+
     @Then("All products should be visible")
     public void all_products_should_be_visible() {
         Assert.assertTrue(" Not all products are visible!",

@@ -6,7 +6,7 @@ public class AllPages {
     private RegistrationPage registrationPage;
     private DashboardPage dashboardPage;
     private CustomerPage customerPage;
-
+private CustomerFavoritesPage customerFavoritesPage;
 
     public LoginPage getLoginPage() {
         if (loginPage == null) {
@@ -34,5 +34,10 @@ public class AllPages {
         }
         return customerPage;
     }
-
+    public CustomerFavoritesPage getCustomerFavoritesPage() {
+        if (customerFavoritesPage == null) {
+            customerFavoritesPage = new CustomerFavoritesPage();
+        }
+        return customerFavoritesPage;
+    }
 }
