@@ -127,5 +127,9 @@ private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavorites
         WebElement ClickCoolBtn = Driver.getDriver().findElement(CoolBtn);
         ClickCoolBtn.click();
     }
+    public boolean verifyHeartIconUnfilled() {
+        List<WebElement> filledHearts =Driver.getDriver().findElements(filledHeartIcon);
+        return filledHearts.isEmpty();
+    }
     }
 
