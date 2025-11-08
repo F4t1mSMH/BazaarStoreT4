@@ -3,7 +3,10 @@ package com.bazaarstores.pages;
 import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +32,24 @@ public class CustomerFavoritesPage extends BasePage {
         return names;
     }
     public void clickHeartIconOnFirstFavorite() {
-        List<WebElement> hearts =Driver.getDriver().findElements(favoriteHeartIcon);
+        List<WebElement> hearts = Driver.getDriver().findElements(favoriteHeartIcon);
+
         if (!hearts.isEmpty()) {
-            hearts.get(0).click();
-            System.out.println(" Clicked heart icon on a favorite product");
+            WebElement firstHeart = hearts.get(0);
+            firstHeart.click();
+            System.out.println("Clicked heart icon on a favorite product");
+
+
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.stalenessOf(firstHeart),
+                    ExpectedConditions.visibilityOfElementLocated(emptyfavoriteList)
+            ));
         } else {
             throw new RuntimeException("No heart icons found on the favorites page");
         }
     }
+
 
     public boolean isEmptyMessageDisplayed() {
         List<WebElement> message = Driver.getDriver().findElements(emptyfavoriteList);

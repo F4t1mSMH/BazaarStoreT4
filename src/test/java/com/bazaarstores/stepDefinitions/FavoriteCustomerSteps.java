@@ -53,7 +53,7 @@ public void customer_navigates_to_my_favorites_page() {
     public void all_favorite_products_should_appear_on_favorites_page() {
         Assert.assertTrue("No favorite products displayed!",
                 allPages.getCustomerFavoritesPage().hasFavoriteProducts());
-        System.out.println(" All favorited products are visible on Favorites page"+ "  " + allPages.getCustomerFavoritesPage().getFavoriteProductNames());
+        System.out.println(" All favorite products are visible on Favorites page"+ "  " + allPages.getCustomerFavoritesPage().getFavoriteProductNames());
 
 
     }
@@ -76,14 +76,14 @@ public void customer_navigates_to_my_favorites_page() {
     @Then("Heart icon status should update on the home page")
     public void heart_icon_status_should_update_on_the_home_page() {
         allPages.getCustomerPage().verifyHeartIconUnfilled();
-        System.out.println("💡 Heart icon status updated correctly (unfilled)");
+        System.out.println("Heart icon status updated correctly (unfilled)");
     }
 
     @Then("Empty message should be displayed on the page")
     public void empty_message_should_be_displayed_on_the_page() {
         boolean emptyMsgVisible = allPages.getCustomerFavoritesPage().isEmptyMessageDisplayed();
         Assert.assertTrue(" Empty message not displayed after removing favorite product!", emptyMsgVisible);
-        System.out.println("✅Empty message displayed successfully: 'There's no favorite product'");
+        System.out.println("Empty message displayed successfully: 'There's no favorite product'");
     }
 }
 
