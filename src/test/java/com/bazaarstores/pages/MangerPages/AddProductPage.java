@@ -10,6 +10,8 @@ public class AddProductPage extends ProductsPage {
     private final By productStockInput = By.name("stock");
     private final By productSKUInput = By.name("sku");
     private final By submitButton = By.xpath("//button[@type='submit']");
+    private final By successMessage = By.xpath("//*[@class='toast-message']");
+    private final By errorMessage = By.cssSelector("//section[@id='multiple-column-form']//div[contains(@class, 'alert')]");
 
 
     public AddProductPage enterProductName(String name) {
@@ -28,8 +30,23 @@ public class AddProductPage extends ProductsPage {
         return this;
     }
 
-    public ProductsPage clickSubmitButton() {
+    public AddProductPage clickSubmitButton() {
         click(submitButton);
-        return new ProductsPage();
+        return new AddProductPage();
+    }
+    public boolean isErrorMessageDisplayed() {
+        return isDisplayed(errorMessage);
+    }
+
+    public String getErrorMessageText() {
+        return getText(errorMessage);
+    }
+
+    public boolean isSuccessMessageDisplayed() {
+        return isDisplayed(successMessage);
+    }
+
+    public String getSuccessMessageText() {
+        return getText(successMessage);
     }
 }
