@@ -1,5 +1,6 @@
 package com.bazaarstores.stepDefinitions;
 
+import com.bazaarstores.pages.AllPages;
 import com.bazaarstores.utilities.ConfigReader;
 import com.bazaarstores.utilities.Driver;
 import io.cucumber.java.After;
@@ -9,12 +10,13 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
+    AllPages allPages = new AllPages();
+    @Before
+    public void setUp(Scenario scenario) {
+        System.out.println("Starting scenario: " + scenario.getName());
+        Driver.getDriver().get(ConfigReader.getBaseUrl());
+    }
 
-//    @Before
-//    public void setUp(Scenario scenario) {
-//        System.out.println("Starting scenario: " + scenario.getName());
-//        Driver.getDriver().get(ConfigReader.getBaseUrl());
-//    }
 
     @After
     public void tearDown(Scenario scenario) {
@@ -30,4 +32,5 @@ public class Hooks {
         
         Driver.quitDriver();
     }
+
 }

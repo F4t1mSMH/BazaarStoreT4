@@ -27,4 +27,5 @@ public class AllPages {
         }
         return dashboardPage;
     }
+
 }
