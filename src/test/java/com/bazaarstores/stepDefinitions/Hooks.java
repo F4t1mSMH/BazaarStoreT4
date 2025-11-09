@@ -33,7 +33,7 @@ public class Hooks {
     }
     @Before("@CustomerUS")
     public void loginBeforeCustomerTests() {
-        System.out.println("Logging in before running @customer scenario...");
+        System.out.println("Logging in before running customer scenario...");
 
         Driver.getDriver().get(ConfigReader.getBaseUrl() + "/login");
 
@@ -44,7 +44,7 @@ public class Hooks {
 
         allPages.getCustomerPage().isCustomerPageDisplayed();
 
-        System.out.println(" Login successful, ready for customer scenarios.");
+        System.out.println(" Login successful");
     }
 
 }
