@@ -10,14 +10,6 @@ import org.junit.Assert;
 //---------------------------------------US04_01--------------------------------------------
 public class CustomerSteps {
     AllPages allPages = new AllPages();
-    @Given("User is already logged in")
-
-    public void user_is_already_logged_in() {
-        allPages.getLoginPage()
-                .enterEmail(ConfigReader.getCustomerEmail())
-                .enterPassword(ConfigReader.getDefaultPassword());
-        allPages.getLoginPage().clickLoginButton();
-    }
 
     @Given("Customer is on the customer page")
     public void customer_is_on_the_customer_page() {
@@ -71,7 +63,16 @@ public class CustomerSteps {
 //        Assert.assertTrue(" Some product descriptions are not visible", descriptionsVisible);
     }
 
-//---------------------------------------US07_01--------------------------------------------
 
+//---------------------------------------US05-------------------------------------------------
+    @When("Customer clicks on a product")
+    public void customer_clicks_on_a_product() {
+
+    }
+
+    @Then("Product details should be displayed including Name, Price, Description, and Images")
+    public void product_details_should_be_displayed_including_name_price_description_and_images() {
+
+    }
 
 }

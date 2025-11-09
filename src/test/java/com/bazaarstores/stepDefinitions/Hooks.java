@@ -32,7 +32,7 @@ public class Hooks {
         Driver.quitDriver();
     }
     @Before("@CustomerUS")
-    public void loginBeforeCustomerTests() {
+    public void loginBeforeCustomerTests() throws InterruptedException {
         System.out.println("Logging in before running customer scenario...");
 
         Driver.getDriver().get(ConfigReader.getBaseUrl() + "/login");
@@ -41,7 +41,7 @@ public class Hooks {
                 ConfigReader.getCustomerEmail(),
                 ConfigReader.getDefaultPassword()
         );
-
+             Thread.sleep(3000);
         allPages.getCustomerPage().isCustomerPageDisplayed();
 
         System.out.println(" Login successful");

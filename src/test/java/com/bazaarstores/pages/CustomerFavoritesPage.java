@@ -16,8 +16,9 @@ public class CustomerFavoritesPage extends BasePage {
     private final By favoriteProducts = By.cssSelector(".favorites-grid , .product-card");
     private final By emptyfavoriteList = By.xpath("//*[contains(., 'no favorite product')]");
     private final By productName = By.cssSelector(".product-name");
-    private final By favoriteHeartIcon = By.cssSelector(".favorite-icon.active");
+    private final By favoriteHeartIcon = By.cssSelector(".favorite-icon");
 
+//    ------------------------------------------------US07-------------------------------------------------------
 
     public boolean hasFavoriteProducts() {
         List<WebElement> products = Driver.getDriver().findElements(favoriteProducts);
@@ -31,24 +32,58 @@ public class CustomerFavoritesPage extends BasePage {
         }
         return names;
     }
-    public void clickHeartIconOnFirstFavorite() {
+
+    public String getProductName(){
+WebElement name = Driver.getDriver().findElement(productName);
+        String productName = name.getText();
+        return productName;
+
+    }
+
+
+
+
+    public void clickHeartIconOnFirstProduct() {
         List<WebElement> hearts = Driver.getDriver().findElements(favoriteHeartIcon);
-
         if (!hearts.isEmpty()) {
-            WebElement firstHeart = hearts.get(0);
-            firstHeart.click();
-            System.out.println("Clicked heart icon on a favorite product");
-
-
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.or(
-                    ExpectedConditions.stalenessOf(firstHeart),
-                    ExpectedConditions.visibilityOfElementLocated(emptyfavoriteList)
-            ));
+            WebElement lastClickedHeart =hearts.getLast();
+            lastClickedHeart.click();
+            new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(3))
+                    .until(ExpectedConditions.elementToBeClickable(lastClickedHeart));
+            System.out.println("Clicked heart icon on the first product");
         } else {
-            throw new RuntimeException("No heart icons found on the favorites page");
+            throw new RuntimeException("No heart icons found on the customer page!");
         }
     }
+
+
+
+    // test for remove all product
+
+    public void removeAllFavoriteProducts() {
+        List<WebElement> hearts = Driver.getDriver().findElements(favoriteHeartIcon);
+
+        while (!hearts.isEmpty()) {
+            try {
+
+                WebElement firstHeart = hearts.getFirst();
+                firstHeart.click();
+                System.out.println("Removed" + " - "+ getProductName() + " - "+"favorite product");
+
+                WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(3));
+                wait.until(ExpectedConditions.stalenessOf(firstHeart));
+
+                hearts = Driver.getDriver().findElements(favoriteHeartIcon);
+
+            } catch (Exception e) {
+                System.out.println("Error removing a favorite product: " + e.getMessage());
+                break;
+            }
+            System.out.println(" All favorite products have been removed.");
+        }
+
+    }
+
 
 
     public boolean isEmptyMessageDisplayed() {

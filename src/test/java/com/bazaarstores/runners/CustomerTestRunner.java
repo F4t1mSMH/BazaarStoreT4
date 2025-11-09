@@ -8,12 +8,12 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "com.bazaarstores.stepDefinitions",
-        tags = "@US07_TC001",
+        tags = "@CustomerUS",
         plugin = {
-//                "pretty", // Generates readable console output with colored text
-//                "html:target/cucumber-reports/cucumber.html", // Creates HTML report at specified path
-//                "json:target/cucumber-reports/cucumber.json", // Generates JSON report for integration with other tools
-//                "junit:target/cucumber-reports/cucumber.xml", // Creates JUnit XML report for CI/CD systems
+                "pretty", // Generates readable console output with colored text
+                "html:target/cucumber-reports/cucumber.html", // Creates HTML report at specified path
+                "json:target/cucumber-reports/cucumber.json", // Generates JSON report for integration with other tools
+                "junit:target/cucumber-reports/cucumber.xml", // Creates JUnit XML report for CI/CD systems
         },
         monochrome = false
 )

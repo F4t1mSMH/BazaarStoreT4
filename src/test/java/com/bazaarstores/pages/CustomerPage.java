@@ -20,18 +20,22 @@ public class CustomerPage extends BasePage {
     private final By productPrice = By.cssSelector(".current-price");
     private final By productImage = By.cssSelector(".product-image");
     private final By productDescription = By.cssSelector(".product-description");
-    private final By productContainer = By.cssSelector(".products-grid");
+    private final By productContainer = By.xpath("//div[@class='products-grid']");
+    private final By clickHomePage = By.linkText("Home");
     // Locators -US07-
-    private final By heartIcon = By.cssSelector(".favorite-icon");
     private final By filledHeartIcon = By.cssSelector(".favorite-icon.active");
     private final By clickFavoritesPage = By.linkText("My Favorites");
 private final  By errorFavoritesMessage  =By.xpath("//*[.='Error!']");
 private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavoritesMessage to accpet or get the erorr message
+
+
+
     // Verify page is displayed
     public boolean isCustomerPageDisplayed() {
         return isDisplayed(productContainer);
     }
 
+    //------------------------------------------ US05 + US04--------------------------------------------------------------
 
     // Check if all products are visible
     public boolean areAllProductsVisible() {
@@ -55,6 +59,7 @@ private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavorites
         return true;
     }
 
+
     public boolean areProductPricesVisible() {
         for (WebElement element : findElements(productPrice)) {
             if (!element.isDisplayed()) {
@@ -73,6 +78,7 @@ private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavorites
         return true;
     }
 
+
     public boolean areProductDescriptionsVisible() {
         for (WebElement element : findElements(productDescription)) {
             if (!element.isDisplayed()) {
@@ -81,6 +87,9 @@ private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavorites
         }
         return true;
     }
+
+    //----------------------------------------------US04----------------------------------------------------------
+
 
     // load page preformance
     public boolean waitUntilProductsAreVisible(int timeoutSeconds) {
@@ -93,43 +102,45 @@ private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavorites
         }
     }
 
-    //-----------------------------------------------------------------
-    public void clickHeartIconOnFirstProduct() throws InterruptedException {
-        List<WebElement> hearts =Driver.getDriver(). findElements(heartIcon);
-        if (!hearts.isEmpty()) {
-            hearts.getFirst().click();
-            Thread.sleep(3000);
-        } else {
-            throw new RuntimeException(" No heart icons found on the customer page!");
-        }
-    }
-        public boolean isProductMarkedAsFavorite() {
+
+
+    public boolean isProductMarkedAsFavorite() {
             List<WebElement> filledHearts = Driver.getDriver().findElements(filledHeartIcon);
             return !filledHearts.isEmpty();
         }
 
+
+    // Check if error message for put two product twaic is displayed
+
+    public boolean isAlreadyFavoriteMessageDisplayed() {
+        try {
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(errorFavoritesMessage)).isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+
+    public void ClickCoolToAccpetAlreadyFavoriateMessage(){
+        WebElement ClickCoolBtn = wait.until(ExpectedConditions.elementToBeClickable(CoolBtn));
+        ClickCoolBtn.click();
+    }
+    public boolean verifyHeartIconUnfilled() {
+        List<WebElement> filledHearts =Driver.getDriver().findElements(filledHeartIcon);
+        return filledHearts.isEmpty();
+    }
+
+//---------------------------------------------------navigatesLinks-------------------------------------------------------------------
     public void clickFavoritesLink() {
         WebElement clickMyFavorites = Driver.getDriver().findElement(clickFavoritesPage);
         clickMyFavorites.click();
 
     }
 
-    // Check if error message is displayed
-    public boolean isAlreadyFavoriteMessageDisplayed() {
-        try {
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(3));
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(errorFavoritesMessage)).isDisplayed();
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
-    public void ClickCoolToAccpetAlreadyFavoriateMessage(){
-        WebElement ClickCoolBtn = Driver.getDriver().findElement(CoolBtn);
-        ClickCoolBtn.click();
-    }
-    public boolean verifyHeartIconUnfilled() {
-        List<WebElement> filledHearts =Driver.getDriver().findElements(filledHeartIcon);
-        return filledHearts.isEmpty();
+    public void clickHomeLink(){
+        WebElement clickMyHome= Driver.getDriver().findElement(clickHomePage);
+        clickMyHome.click();
     }
     }
 
