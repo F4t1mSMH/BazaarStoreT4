@@ -14,6 +14,7 @@ public class DashboardPage extends BasePage {
     private final By productsLink = By.cssSelector("a[href*='products'], button:contains('Products')");
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
+    private final By mangerProductsLink = By.xpath("//a[contains(@href, 'products') or contains(., 'Products')]");
 
 
     // Navigation Methods
@@ -29,10 +30,15 @@ public class DashboardPage extends BasePage {
         click(productsLink);
     }
 
+    public void clickMangerProductsLink() {
+        click(mangerProductsLink);
+    }
+
     public LoginPage clickLogout() {
         click(logoutButton);
         return new LoginPage();
     }
+
 
     // Verification Methods
     public boolean isDashboardPageDisplayed() {
