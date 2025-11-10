@@ -1,5 +1,8 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.pages.CustomerPages.CustomerFavoritesPage;
+import com.bazaarstores.pages.CustomerPages.CustomerPage;
+
 public class AllPages {
 
     private LoginPage loginPage;

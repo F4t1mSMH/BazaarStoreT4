@@ -1,5 +1,6 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.CustomerPages;
 
+import com.bazaarstores.pages.BasePage;
 import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

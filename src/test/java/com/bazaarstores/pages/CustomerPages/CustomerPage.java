@@ -1,5 +1,6 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.CustomerPages;
 
+import com.bazaarstores.pages.BasePage;
 import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -112,7 +113,25 @@ private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavorites
 }
 
 
+public void ClickonAnyProduct(){
+    List<WebElement>  clickonspcProuducts = Driver.getDriver().findElements(productCards);
+    WebElement last =clickonspcProuducts.getLast();
+    last.click();
 
+    if (last.isDisplayed()) {
+        String name = last.findElement(productName).getText();
+        String price = last.findElement(productPrice).getText();
+        String description = last.findElement(productDescription).getText();
+        String imageUrl = last.findElement(productImage).getAttribute("src");
+
+        System.out.println("Product:");
+        System.out.println("  Name: " + name);
+        System.out.println("  Price: " + price);
+        System.out.println("  Description: " + description);
+        System.out.println("  Image URL: " + imageUrl);
+
+    }
+}
 
 
 
