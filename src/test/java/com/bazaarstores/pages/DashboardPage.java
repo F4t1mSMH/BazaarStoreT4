@@ -1,5 +1,7 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.utilities.ConfigReader;
+import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -66,4 +68,14 @@ public class DashboardPage extends BasePage {
     public boolean isProfileVisitChartDisplayed() {
         return isDisplayed(profileVisitChart);
     }
+    public void navigateToPage(String pageName) {
+        // مثال: الضغط على رابط أو قائمة حسب اسم الصفحة
+        By menuLink = By.xpath("//a[contains(normalize-space(.),'" + pageName + "')]");
+        waitForElementToBeClickable(menuLink);
+        click(menuLink);
+    }
+    public void goToUsersPage() {
+        Driver.getDriver().get(ConfigReader.getBaseUrl() + "/users");
+    }
+
 }

@@ -226,4 +226,13 @@ public abstract class BasePage {
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
+
+    public void type(By locator, String text){
+        WebElement element = Driver.getDriver().findElement(locator);
+        element.clear();
+        if(text != null && !text.isEmpty()){
+            element.sendKeys(text);
+        }
+    }
+
 }

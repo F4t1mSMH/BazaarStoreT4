@@ -7,14 +7,14 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {
-                "pretty",
-                "html:target/cucumber-reports/cucumber.html",
-                "json:target/cucumber-reports/cucumber.json",
-                "junit:target/cucumber-reports/cucumber.xml"
+                "pretty", // Generates readable console output with colored text
+                "html:target/cucumber-reports/cucumber.html", // Creates HTML report at specified path
+                "json:target/cucumber-reports/cucumber.json", // Generates JSON report for integration with other tools
+                "junit:target/cucumber-reports/cucumber.xml", // Creates JUnit XML report for CI/CD systems
         },
         features = "src/test/resources/features",
         glue = "com.bazaarstores.stepDefinitions",
-        tags ="@US14_TC001 or @US14_TC002 or  @US14_TC003" ,
+        tags = "@US14 or @AddUser or @EditUser or @CancelDeleteUser or  @DeleteUser",
         dryRun = false
 )
 public class Runner {

@@ -1,0 +1,61 @@
+@Users @Admin
+Feature: User Management in Bazaar Admin Panel
+
+  Background:
+    Given the admin is logged into the Bazaar Admin Panel
+    And the admin navigates to the Users management page
+  @AddUser @Smoke
+  @US15_TC001
+  Scenario: Add a new user as an Admin
+    When the admin clicks Add User
+    And the admin fills the user form with:
+      | name           | email            | role       | password         | confirmPassword |
+      | Test User One  | rss@mail.com | Customer  | Test@12345       | Test@12345      |
+    And the admin submits the user form
+    And the new user "rss@mail.com" should appear in the user list
+  @US15_TC002
+  Scenario: Verify missing email validation
+    And the admin navigates to the Users management page
+    When the admin clicks Add User
+    And the admin fills the user form with:
+      | name | email | role | password | confirmPassword |
+      | Test |       | Customer | Test@12345 | Test@12345 |
+    And the admin submits the user form
+    Then the error message "The email field is required" should be displayed
+  @US15_TC003
+  Scenario: Verify invalid email format
+    And the admin navigates to the Users management page
+    When the admin clicks Add User
+    And the admin fills the user form with:
+      | name | email         | role     | password | confirmPassword |
+      | Test | sarah_test.com | Customer | Test@12345 | Test@12345 |
+    And the admin submits the user form
+
+
+  @EditUser   @Smoke
+
+  @US16_TC001
+  Scenario: Verify editing user details successfully
+    When the admin clicks "Edit" on a user
+    And the admin modifies the user email to "updated_user@mail.com"
+    And the admin clicks "Save"
+    Then a success message "User details updated successfully." should be displayed
+    And the user email in the table should be "updated_user@mail.com"
+
+  @US16_TC002
+  Scenario: Verify validation error for missing inputs during edit
+    When the admin clicks "Edit" on a user
+    And the admin clears the Email field
+    And the admin clicks "Save"
+    Then an error message "The email field is required." should be displayed
+
+  @DeleteUser
+  Scenario: Delete existing user
+    When the admin clicks Delete beside user "updated_user@mail.com"
+    And the admin confirms deletion
+
+  @CancelDeleteUser
+  Scenario: Cancel deletion of a user
+    When the admin clicks Delete beside user "updated_user@mail.com"
+    And the admin cancels deletion
+    Then the user "updated_user@mail.com" should remain in the list
