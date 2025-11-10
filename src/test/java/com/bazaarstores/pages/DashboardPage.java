@@ -1,7 +1,8 @@
 package com.bazaarstores.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import java.util.List;
 
 public class DashboardPage extends BasePage {
 
@@ -14,7 +15,8 @@ public class DashboardPage extends BasePage {
     private final By productsLink = By.cssSelector("a[href*='products'], button:contains('Products')");
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
-
+    private final By addToCartButtons = By.cssSelector("button.add-to-cart, button[data-action='add-to-cart']"); // ✅ buttons for adding products
+    private final By successMessage = By.cssSelector(".toast-message, .success-message, [class*='added-successfully']");
 
     // Navigation Methods
     public void clickProfileLink() {
@@ -34,7 +36,26 @@ public class DashboardPage extends BasePage {
         return new LoginPage();
     }
 
-    // Verification Methods
+    public void addFirstProductToCart() {
+        waitForElementToBeVisible(dashboard); // Ensure products are loaded
+        List<WebElement> addButtons = findElements(addToCartButtons);
+
+        if (!addButtons.isEmpty()) {
+            addButtons.get(0).click();
+
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
+        } else {
+            throw new RuntimeException("No products found to add to cart!");
+        }
+
+    }
+
+
     public boolean isDashboardPageDisplayed() {
         return isDisplayed(dashboard);
     }
@@ -65,5 +86,13 @@ public class DashboardPage extends BasePage {
 
     public boolean isProfileVisitChartDisplayed() {
         return isDisplayed(profileVisitChart);
+    }
+
+    public boolean isSuccessMessageDisplayed() {
+        return isDisplayed(successMessage);
+    }
+
+    public String getSuccessMessageText() {
+        return getText(successMessage);
     }
 }

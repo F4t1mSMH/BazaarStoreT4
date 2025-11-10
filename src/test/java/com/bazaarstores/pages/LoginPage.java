@@ -67,4 +67,9 @@ public class LoginPage extends BasePage {
         String validationMessage = getValidationMessage(field);
         return validationMessage != null && !validationMessage.isEmpty();
     }
+    public boolean isInvalidEmailFormatMessageDisplayed() {
+        String message = getValidationMessage(emailInput);
+        return message != null && message.contains("@");
+    }
+
 }
