@@ -52,27 +52,28 @@ public class CustomerSteps {
     }
     @Then("Each product should display name, price, image, and description")
     public void each_product_should_display_name_price_image_and_description() {
-        boolean namesVisible = allPages.getCustomerPage().areProductNamesVisible();
-        boolean pricesVisible = allPages.getCustomerPage().areProductPricesVisible();
-        boolean imagesVisible = allPages.getCustomerPage().areProductImagesVisible();
-        boolean descriptionsVisible = allPages.getCustomerPage().areProductDescriptionsVisible();
-
-        Assert.assertTrue("Some product names are not visible", namesVisible);
-        Assert.assertTrue("Some product prices are not visible", pricesVisible);
-        Assert.assertTrue("Some product images are not visible", imagesVisible);
-//        Assert.assertTrue(" Some product descriptions are not visible", descriptionsVisible);
+          allPages.getCustomerPage().printallproductdetails();
     }
 
 
 //---------------------------------------US05-------------------------------------------------
     @When("Customer clicks on a product")
     public void customer_clicks_on_a_product() {
-
+        System.out.println("no click");
     }
 
     @Then("Product details should be displayed including Name, Price, Description, and Images")
     public void product_details_should_be_displayed_including_name_price_description_and_images() {
+        boolean namesVisible = allPages.getCustomerPage().areProductNamesVisible();
+        boolean pricesVisible = allPages.getCustomerPage().areProductPricesVisible();
+        boolean imagesVisible = allPages.getCustomerPage().areProductImagesVisible();
+        boolean descriptionsVisible = allPages.getCustomerPage().areProductDescriptionsVisible();
 
+
+        Assert.assertTrue("Some product names are not visible", namesVisible);
+        Assert.assertTrue("Some product prices are not visible", pricesVisible);
+        Assert.assertTrue("Some product images are not visible", imagesVisible);
+        Assert.assertTrue(" Some product descriptions are not visible", descriptionsVisible);
     }
 
 }

@@ -87,6 +87,41 @@ private final By CoolBtn = By.xpath("//button[.='Cool']"); // for errorFavorites
         }
         return true;
     }
+    public void printallproductdetails() {
+
+    List<WebElement> Cards = Driver.getDriver().findElements(productCards);
+
+    for (WebElement card : Cards) {
+
+        if (card.isDisplayed()) {
+            String name = card.findElement(productName).getText();
+            String price = card.findElement(productPrice).getText();
+            String description = card.findElement(productDescription).getText();
+            String imageUrl = card.findElement(productImage).getAttribute("src");
+
+            System.out.println("Product:");
+            System.out.println("  Name: " + name);
+            System.out.println("  Price: " + price);
+            System.out.println("  Description: " + description);
+            System.out.println("  Image URL: " + imageUrl);
+
+        }
+    }
+
+    System.out.println( "All visible products printed successfully.");
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
     //----------------------------------------------US04----------------------------------------------------------
 
