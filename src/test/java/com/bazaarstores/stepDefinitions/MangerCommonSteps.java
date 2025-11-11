@@ -2,8 +2,10 @@ package com.bazaarstores.stepDefinitions;
 
 import com.bazaarstores.pages.AddProductPage;
 import com.bazaarstores.pages.AllPages;
+import com.bazaarstores.pages.DashboardPage;
 import com.bazaarstores.pages.ProductsPage;
 import com.bazaarstores.utilities.ConfigReader;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,6 +16,7 @@ public class MangerCommonSteps {
     private final ProductsPage productsPage = new ProductsPage();
     private final AddProductPage addProductPage = new AddProductPage();
     private final AllPages pages = new AllPages();
+    private final DashboardPage dashboardPage = new DashboardPage();
 
     private final MangerScenarioContext context;
 
@@ -22,6 +25,7 @@ public class MangerCommonSteps {
     }
 
     // background start
+    @Before("@Manger")
     @Given("the store manger logged in on the dashboard page")
     public void theStoreMangerLoggedInOnTheDashboardPage() {
         pages.getLoginPage()
@@ -32,7 +36,8 @@ public class MangerCommonSteps {
 
     @And("the manger click on product page")
     public void theMangerClickOnProductPage() {
-        pages.getDashboardPage().clickMangerProductsLink();
+        dashboardPage.clickMangerProductsLink();
+
     }
     // background end
 
