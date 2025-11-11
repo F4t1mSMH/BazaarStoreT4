@@ -6,7 +6,7 @@ public class ProductsPage extends DashboardPage {
     private By addProductButton = By.xpath("//a[normalize-space()='Add Product']");
     private final String productTable = "//td[contains(text(), '{0}')]";
     private final String editButton = "//tr[td[contains(text(), '{0}')]]//button[1]";
-    private final String deleteButton = "//tr[td[contains(text(), '{0}')]]//button[@class='delete-btn']";
+    private final String deleteButton = "//tr[td[contains(text(), '{0}')]]//i[@class='bi bi-trash3']";
     private final String confirmDelete = "//tr[td[contains(text(), '{0}')]]//button[2]";
     private final String cancelDelete = "//tr[td[contains(text(), '{0}')]]//button[2]";
 
