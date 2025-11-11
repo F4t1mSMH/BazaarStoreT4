@@ -7,7 +7,7 @@ Feature: Cart functionality - Add, View, Remove, and Confirm items
 
   # US06_TC001 - Add product to the cart
 
-  @US06
+  @Smoke @Regression @US06
   Scenario: Verify adding a product to the cart
     When customer adds a product to the cart
     Then customer hovers over the cart icon
@@ -16,10 +16,9 @@ Feature: Cart functionality - Add, View, Remove, and Confirm items
 
 
 
-
   # US08_TC001 - View items in the cart
 
-  @US08
+  @Regression @US08
   Scenario: Verify that the cart displays added items
     When customer adds a product to the cart
     And customer hovers over the cart icon
@@ -29,7 +28,7 @@ Feature: Cart functionality - Add, View, Remove, and Confirm items
 
   # US06_TC002 - Remove product from the cart
 
-  @US06
+  @Regression @US06
   Scenario: Verify removing an item from the cart
   When customer adds a product to the cart
     And customer hovers over the cart icon
