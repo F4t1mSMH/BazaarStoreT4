@@ -31,7 +31,7 @@ public class DashboardPage extends BasePage {
     }
 
     public void clickMangerProductsLink() {
-        click(mangerProductsLink);
+        clickWithJS(mangerProductsLink);
     }
 
     public LoginPage clickLogout() {
