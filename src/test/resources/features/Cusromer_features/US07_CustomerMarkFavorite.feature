@@ -1,7 +1,7 @@
-@CustomerUS @regression
+
 Feature: Favorite Products Functionality
 
-  @US07_TC001
+  @US07_TC001  @regression @CustomerUI
   Scenario: Verify customer can mark a product as favorite
     Given Customer is on the customer page
     When Customer clicks the heart icon on a product
@@ -9,7 +9,7 @@ Feature: Favorite Products Functionality
     And The heart icon should change to filled
 
 
-  @US07_TC002
+  @US07_TC002  @regression @CustomerUI
   Scenario: Verify error message appears if Customer marks same product as favorite again
     Given Customer is on the customer page
     When Customer clicks the heart icon on a product
@@ -17,7 +17,7 @@ Feature: Favorite Products Functionality
     Then Error message "Product is already in favorites." should appear
 
 
-  @US07_TC003
+  @US07_TC003  @regression @CustomerUI
   Scenario: Verify accessing favorite list
     Given Customer is on the customer page
     When Customer clicks the heart icon on a product
@@ -27,7 +27,7 @@ Feature: Favorite Products Functionality
 
 
 
-  @US07_TC004
+  @US07_TC004  @regression @CustomerUI
   Scenario: Verify removing product from "My Favorites" list
     Given Customer is on the customer page
     And Customer has at least one product marked as favorite
@@ -39,20 +39,20 @@ Feature: Favorite Products Functionality
 
 # ---------------------------------------APi--------------------------------------------------
 
-  @US07_TC005 @API
+  @US07_TC005 @API @Smoke
   Scenario: assert customer can mark a product as favorite via API with id
     When assert Customer sends a POST request to mark product with id "49" as favorite
 
-  @US07_TC006 @API
+  @US07_TC006 @API @Smoke
   Scenario: assert customer can mark a product as favorite via API with testdata
     When assert Customer sends a POST request to mark product with testdata as favorite
 
-  @US07_TC007 @API
+  @US07_TC007 @API @Smoke
   Scenario: assert accessing all favorite list
     When assert Customer sends a GET request to retrieve all favorite products
 
 
-  @US07_TC008 @API
+  @US07_TC008 @API @Smoke
   Scenario:  Verify removing product from Favorites list
     When assert Customer sends a DELETE request to remove product with id "49" from favorites
 
