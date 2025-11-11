@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "com.bazaarstores.stepDefinitions",
-        tags = "@NegativeAddOnly",
+        tags = "@deleteProduct_API",
         dryRun = false
 )
 
