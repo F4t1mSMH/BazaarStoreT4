@@ -1,8 +1,8 @@
 package com.bazaarstores.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement; // ⭐ Required Import
-import org.openqa.selenium.support.ui.Select; // ⭐ Required Import
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import static org.codehaus.groovy.tools.shell.util.Preferences.clear;
 
