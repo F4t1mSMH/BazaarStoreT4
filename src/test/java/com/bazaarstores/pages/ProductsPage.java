@@ -3,7 +3,7 @@ package com.bazaarstores.pages;
 import org.openqa.selenium.By;
 
 public class ProductsPage extends DashboardPage {
-    private By addProductButton = By.xpath("//a[normalize-space()='Add Product']");
+    private By addProductButton = By.cssSelector("a[href*='product/create']");
     private final String productTable = "//td[contains(text(), '{0}')]";
     private final String editButton = "//tr[td[contains(text(), '{0}')]]//button[1]";
     private final String deleteButton = "//tr[td[contains(text(), '{0}')]]//i[@class='bi bi-trash3']";
