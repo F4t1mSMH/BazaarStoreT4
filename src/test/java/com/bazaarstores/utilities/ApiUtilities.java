@@ -22,6 +22,7 @@ public class ApiUtilities {
                 .build();
     }
 
+
     private static String getToken() {
         Map payload = new HashMap();
         payload.put("email", ConfigReader.getAdminEmail());
@@ -30,7 +31,18 @@ public class ApiUtilities {
                 .body(payload)
                 .contentType(ContentType.JSON)
                 .post(ConfigReader.getApiBaseUrl() + "/login");
-        return response.jsonPath().getString("authorisation.token");
+        if (response.statusCode() == 200) {
+            System.out.println("API Login successful. Token retrieved.");
+            return response.jsonPath().getString("authorisation.token");
+        } else {
+            // If login fails, print the response body to debug credentials
+            System.err.println("API LOGIN FAILED!");
+            System.err.println("Login Status Code: " + response.statusCode());
+            response.prettyPrint();
+            // Throwing a runtime exception stops the test immediately
+            throw new RuntimeException("API login failed during getToken(). Check credentials/config.");
+        }
+
     }
 
 }
