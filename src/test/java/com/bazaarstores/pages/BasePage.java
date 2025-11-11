@@ -54,6 +54,11 @@ public abstract class BasePage {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("arguments[0].value='" + text + "';", findElement(locator));
     }
+    //clear method --> fatima
+    public void clear(By locator) {
+        waitForElementToBeVisible(locator);
+        findElement(locator).clear();
+    }
 
     // Wait Methods
     public void waitForElementToBeVisible(By locator) {
