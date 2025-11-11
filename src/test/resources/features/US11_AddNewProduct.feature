@@ -13,7 +13,7 @@ Feature: Product Creation
 
     Then the product can be retrieved successfully via API using its ID
 
-  @regression
+  @regression @negative
   Scenario: verify error message when Add a new product and leave empty name
     When the Store Manager clicks on the "Add Product" button
     And the Store Manager enters product details and leave name empty
@@ -21,31 +21,30 @@ Feature: Product Creation
     Then an error message "The name field is required." should be displayed
 
 
-  @regression
+  @regression @negative
   Scenario: verify error message when Add a new product and leave empty price
     When the Store Manager clicks on the "Add Product" button
     And the Store Manager enters product details and leave price empty
     And the Store Manager submits the product form
     Then an error message "The price field is required." should be displayed
 
-  @regression
+  @regression @negative
   Scenario: verify error message when Add a new product and leave empty stock
     When the Store Manager clicks on the "Add Product" button
     And the Store Manager enters product details and leave stoke empty
     And the Store Manager submits the product form
     Then an error message "The stock field is required." should be displayed
 
-  @regression
+  @regression @negative
   Scenario: verify error message when Add a new product and leave empty sku
     When the Store Manager clicks on the "Add Product" button
     And the Store Manager enters product details and leave sku empty
     And the Store Manager submits the product form
     Then an error message "The sku field is required." should be displayed
 
-  @regression
+  @regression @negative
   Scenario: verify error message when Add a new product and used duplicate sku
     Given a product exists in the system with the duplicate SKU
-
     When the Store Manager clicks on the "Add Product" button
     And the Store Manager enters product details and enter used sku
     And the Store Manager submits the product form
