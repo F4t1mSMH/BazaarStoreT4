@@ -1,4 +1,4 @@
-@CustomerUS
+@CustomerUS @regression
 Feature: Favorite Products Functionality
 
   @US07_TC001
@@ -36,3 +36,33 @@ Feature: Favorite Products Functionality
     Then The product should be removed from Favorites list
     And Empty message should be displayed on the page
     And Heart icon status should update on the home page
+
+# ---------------------------------------APi--------------------------------------------------
+
+  @US07_TC005 @API
+  Scenario: assert customer can mark a product as favorite via API with id
+    When assert Customer sends a POST request to mark product with id "49" as favorite
+
+  @US07_TC006 @API
+  Scenario: assert customer can mark a product as favorite via API with testdata
+    When assert Customer sends a POST request to mark product with testdata as favorite
+
+  @US07_TC007 @API
+  Scenario: assert accessing all favorite list
+    When assert Customer sends a GET request to retrieve all favorite products
+
+
+  @US07_TC008 @API
+  Scenario:  Verify removing product from Favorites list
+    When assert Customer sends a DELETE request to remove product with id "49" from favorites
+
+
+
+
+
+
+
+
+
+
+

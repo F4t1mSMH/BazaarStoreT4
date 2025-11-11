@@ -1,6 +1,8 @@
 package com.bazaarstores.stepDefinitions.CustomerStepsDef;
 
 import com.bazaarstores.pages.AllPages;
+import com.bazaarstores.utilities.ConfigReader;
+import com.bazaarstores.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,6 +13,8 @@ public class CustomerSteps {
 
     @Given("Customer is on the customer page")
     public void customer_is_on_the_customer_page() {
+        Driver.getDriver().get(ConfigReader.getcustomerBaseUrl());
+
         Assert.assertTrue("Home page should be displayed",
                 allPages.getCustomerPage().isCustomerPageDisplayed());
     }

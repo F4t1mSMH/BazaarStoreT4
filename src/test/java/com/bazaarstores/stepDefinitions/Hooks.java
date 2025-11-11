@@ -11,13 +11,13 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
     AllPages allPages = new AllPages();
-    @Before
-    public void setUp(Scenario scenario) {
-        System.out.println("Starting scenario: " + scenario.getName());
-        Driver.getDriver().get(ConfigReader.getBaseUrl());
-    }
+//    @Before
+//    public void setUp(Scenario scenario) {
+//        System.out.println("Starting scenario: " + scenario.getName());
+//        Driver.getDriver().get(ConfigReader.getBaseUrl());
+//    }
 
-    @After
+    @After("UI")
     public void tearDown(Scenario scenario) {
         // Take screenshot on failure
         if (scenario.isFailed()) {
@@ -31,20 +31,20 @@ public class Hooks {
         
         Driver.quitDriver();
     }
-    @Before("@CustomerUS")
-    public void loginBeforeCustomerTests() throws InterruptedException {
-        System.out.println("Logging in before running customer scenario...");
-
-        Driver.getDriver().get(ConfigReader.getBaseUrl() + "/login");
-
-        allPages.getLoginPage().login(
-                ConfigReader.getCustomerEmail(),
-                ConfigReader.getDefaultPassword()
-        );
-             Thread.sleep(3000);
-        allPages.getCustomerPage().isCustomerPageDisplayed();
-
-        System.out.println(" Login successful");
-    }
+//    @Before("@CustomerUS")
+//    public void loginBeforeCustomerTests() throws InterruptedException {
+//        System.out.println("Logging in before running customer scenario...");
+//
+//        Driver.getDriver().get(ConfigReader.getBaseUrl() + "/login");
+//
+//        allPages.getLoginPage().login(
+//                ConfigReader.getCustomerEmail(),
+//                ConfigReader.getDefaultPassword()
+//        );
+//             Thread.sleep(3000);
+//        allPages.getCustomerPage().isCustomerPageDisplayed();
+//
+//        System.out.println(" Login successful");
+//    }
 
 }

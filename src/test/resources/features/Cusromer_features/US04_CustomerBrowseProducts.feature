@@ -1,7 +1,7 @@
-@CustomerUS
+@CustomerUS @regression
 Feature: US04 - Browse products as a customer
 
-  @US04_TC001 @Customer
+  @US04_TC001
   Scenario: Verify customer can see products
     Given Customer is on the customer page
     When Customer observes each product card
@@ -13,3 +13,9 @@ Feature: US04 - Browse products as a customer
     When Products are loaded
     Then All products should load in less than 3 seconds
     And Each product should display name, price, image, and description
+
+# ---------------------------------------APi--------------------------------------------------
+
+  @US04_TC003   @API
+  Scenario: Verify customer can see all products via API
+    When assert the Customer can see products via API
