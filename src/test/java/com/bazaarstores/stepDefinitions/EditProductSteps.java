@@ -18,6 +18,7 @@ public class EditProductSteps {
     private final Faker faker = new Faker();
     private Response response;
 
+
     @Given("edited product details are generated")
     public void editedProductDetailsAreGenerated() {
         String newProductName = faker.commerce().productName() + " (EDITED)";
@@ -49,12 +50,16 @@ public class EditProductSteps {
         System.out.println("Product ID " + MangerScenarioContext.productId + " successfully updated via API.");
     }
 
+
     @And("the Store Manager edit product details")
     public void theStoreManagerEditProductDetails() {
         MangerScenarioContext.editedProductName = faker.commerce().productName();
         int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
         int newStock = faker.number().numberBetween(10, 500);
-        addProductPage.enterProductName(MangerScenarioContext.editedProductName)
+
+        // Note: Assumes SKU is either not edited or handled elsewhere.
+        addProductPage
+                .enterProductName(MangerScenarioContext.editedProductName)
                 .enterProductPrice(newPrice)
                 .enterProductStock(newStock);
     }
@@ -65,11 +70,10 @@ public class EditProductSteps {
                 productsPage.isProductDisplayed(MangerScenarioContext.editedProductName));
     }
 
-    //Negative Edit start
 
     @And("the Store Manager edit product details delete name")
     public void theStoreManagerEditProductDetailsDeleteName() {
-        //edit and delete name
+
         int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
         int newStock = faker.number().numberBetween(10, 500);
         addProductPage
@@ -78,31 +82,36 @@ public class EditProductSteps {
                 .enterProductStock(newStock);
     }
 
+
     @And("the Store Manager edit product details and delete price")
     public void theStoreManagerEditProductDetailsAndDeletePrice() {
-        //edit and delete price
+        String newName = faker.commerce().productName();
         int newStock = faker.number().numberBetween(10, 500);
         addProductPage
-                .enterProductPrice(0)
+                .enterProductName(newName)
+                .clearProductPrice()
                 .enterProductStock(newStock);
     }
 
+
     @And("the Store Manager edit product details and delete stock")
     public void theStoreManagerEditProductDetailsAndDeleteStock() {
-        //edit and delete stock
+        String newName = faker.commerce().productName();
         int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
         addProductPage
+                .enterProductName(newName)
                 .enterProductPrice(newPrice)
-                .enterProductStock(0);
+                .clearProductStock();
     }
 
     @And("the Store Manager edit product details and delete sku")
     public void theStoreManagerEditProductDetailsAndDeleteSku() {
-        //edit and delete sku
+        String newName = faker.commerce().productName();
         int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
         addProductPage
+                .enterProductName(newName)
                 .enterProductPrice(newPrice)
-                .enterProductSKU(0);
+                .clearProductSku();
     }
     //Negative Edit end
 }

@@ -78,4 +78,21 @@ public class AddProductPage extends ProductsPage{
     public String getSuccessMessageText() {
         return getText(successMessage);
     }
+
+    public AddProductPage waitForFormToLoad() {
+        waitForElementToBeVisible(submitButton);
+        return this;
+    }
+    public AddProductPage clearProductPrice() {
+        clear(productPriceInput);
+        return this;
+    }
+    public AddProductPage clearProductStock() {
+        clear(productStockInput);
+        return this;
+    }
+    public AddProductPage clearProductSku() {
+        clear(productSKUInput);
+        return this;
+    }
 }

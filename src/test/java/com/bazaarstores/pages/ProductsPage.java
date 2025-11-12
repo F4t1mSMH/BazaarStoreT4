@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 public class ProductsPage extends DashboardPage {
     private By addProductButton = By.cssSelector("a[href*='product/create']");
     private final String productTable = "//td[contains(text(), '{0}')]";
-    private final String editButton = "//tr[td[contains(text(), '{0}')]]//button[1]";
-    private final String deleteButton = "//tr[td[contains(text(), '{0}')]]//i[@class='bi bi-trash3']";
+    private final String editButton = "//tr[td[contains(.,'%s')]]//i[@class='bi bi-pencil-square']";
+    private final String deleteButton = "//tr[td[contains(.,'%s')]]//i[@class='bi bi-trash3']";
     private final String confirmDelete = "//tr[td[contains(text(), '{0}')]]//button[2]";
     private final String cancelDelete = "//button[normalize-space()='Cancel']";
 
@@ -18,17 +18,17 @@ public class ProductsPage extends DashboardPage {
     }
 
     public void clickEditButtonByName(String productName) {
-        By editLocator = By.xpath(editButton.replace("{0}", productName));
-        click(editLocator);
+        By editLocator = By.xpath(String.format(editButton,productName));
+        clickWithJS(editLocator);
     }
 
     public void clickDeleteButtonByName(String productName) {
-        By deleteLocator = By.xpath(deleteButton.replace("{0}", productName));
+        By deleteLocator = By.xpath(String.format(editButton,productName));
         click(deleteLocator);
     }
 
     public boolean isProductDisplayed(String productName) {
-        By productLocator = By.xpath(productTable.replace("{0}", productName));
+        By productLocator = By.xpath(String.format(editButton,productName));
 
         return isDisplayed(productLocator);
     }
@@ -44,4 +44,5 @@ public class ProductsPage extends DashboardPage {
     public void searchProduct(String productToVerifyName) {
 
     }
+
 }
