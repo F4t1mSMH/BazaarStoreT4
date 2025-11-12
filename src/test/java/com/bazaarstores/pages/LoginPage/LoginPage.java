@@ -1,5 +1,8 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.LoginPage;
 
+import com.bazaarstores.pages.BasePage;
+import com.bazaarstores.pages.DashboardPage;
+import com.bazaarstores.pages.RegistrationPage;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {
@@ -67,4 +70,9 @@ public class LoginPage extends BasePage {
         String validationMessage = getValidationMessage(field);
         return validationMessage != null && !validationMessage.isEmpty();
     }
+    public boolean isInvalidEmailFormatMessageDisplayed() {
+        String message = getValidationMessage(emailInput);
+        return message != null && message.contains("@");
+    }
+
 }
