@@ -36,7 +36,7 @@ public class MangerCommonSteps {
 
     @And("the manger click on product page")
     public void theMangerClickOnProductPage() {
-        dashboardPage.clickMangerProductsLink();
+        pages.getDashboardPage().clickMangerProductsLink();
 
     }
     // background end
