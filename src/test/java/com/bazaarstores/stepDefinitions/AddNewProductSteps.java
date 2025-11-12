@@ -102,6 +102,10 @@ public class AddNewProductSteps {
         payload.put("sku", MangerScenarioContext.DUPLICATE_SKU);
         payload.put("category_id", 1);
         payload.put("status", 1);
+        payload.put("manufacturer", "Test Manufacturer Inc");
+        payload.put("image_url", "https://example.com/test_image.jpg");
+        payload.put("description", "Precondition product for SKU test.");
+        payload.put("discount", 0.0);
 
         given(ApiUtilities.spec())
                 .body(payload)
