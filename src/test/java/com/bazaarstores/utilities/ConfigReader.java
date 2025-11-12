@@ -36,6 +36,10 @@ public class ConfigReader {
     public static String getApiBaseUrl() {
         return properties.getProperty("api.base.url");
     }
+    public static String getcustomerBaseUrl() {
+        return properties.getProperty("customer.base.url");
+    }
+
 
     public static String getCustomerEmail() {
         return properties.getProperty("customer.email");

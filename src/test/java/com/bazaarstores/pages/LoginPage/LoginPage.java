@@ -1,5 +1,8 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.LoginPage;
 
+import com.bazaarstores.pages.BasePage;
+import com.bazaarstores.pages.DashboardPage;
+import com.bazaarstores.pages.RegistrationPage;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {

@@ -1,4 +1,4 @@
-package com.bazaarstores.stepDefinitions;
+package com.bazaarstores.stepDefinitions.LogInStepsDef;
 
 import com.bazaarstores.utilities.ConfigReader;
 import io.cucumber.java.en.*;

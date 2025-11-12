@@ -1,5 +1,6 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.pages.LoginPage.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.List;
