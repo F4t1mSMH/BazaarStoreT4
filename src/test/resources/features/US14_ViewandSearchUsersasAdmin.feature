@@ -19,3 +19,4 @@ Feature: US14 - View and Search Users as Admin
     When the admin navigates to the Users management page
     And the admin searches for "notfound@fakeemail.com"
     Then the message "No user found" is displayed
+

@@ -260,6 +260,4 @@ public class UsersPage extends BasePage {
         }
     }
 
-
-
 }

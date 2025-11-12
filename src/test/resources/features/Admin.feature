@@ -10,9 +10,9 @@ Feature: User Management in Bazaar Admin Panel
     When the admin clicks Add User
     And the admin fills the user form with:
       | name           | email            | role       | password         | confirmPassword |
-      | Test User One  | rss@mail.com | Customer  | Test@12345       | Test@12345      |
+      | sara  | sarah97@mail.com | Customer  | Test@12345       | Test@12345      |
     And the admin submits the user form
-    And the new user "rss@mail.com" should appear in the user list
+    And the new user "sarah97@mail.com" should appear in the user list
   @US15_TC002
   Scenario: Verify missing email validation
     And the admin navigates to the Users management page
@@ -37,25 +37,19 @@ Feature: User Management in Bazaar Admin Panel
   @US16_TC001
   Scenario: Verify editing user details successfully
     When the admin clicks "Edit" on a user
-    And the admin modifies the user email to "updated_user@mail.com"
+    And the admin modifies the user email to "updated_sa@mail.com"
     And the admin clicks "Save"
     Then a success message "User details updated successfully." should be displayed
-    And the user email in the table should be "updated_user@mail.com"
+    And the user email in the table should be "updated_sa@mail.com"
 
-  @US16_TC002
-  Scenario: Verify validation error for missing inputs during edit
-    When the admin clicks "Edit" on a user
-    And the admin clears the Email field
-    And the admin clicks "Save"
-    Then an error message "The email field is required." should be displayed
 
   @DeleteUser
   Scenario: Delete existing user
-    When the admin clicks Delete beside user "updated_user@mail.com"
+    When the admin clicks Delete beside user "updated_sa@mail.com"
     And the admin confirms deletion
 
   @CancelDeleteUser
   Scenario: Cancel deletion of a user
-    When the admin clicks Delete beside user "updated_user@mail.com"
+    When the admin clicks Delete beside user "updated_sa@mail.com"
     And the admin cancels deletion
-    Then the user "updated_user@mail.com" should remain in the list
+    Then the user "updated_sa@mail.com" should remain in the list

@@ -76,22 +76,22 @@ public class UsersStepDefs {
                 data.get("confirmPassword")
         );
     }
-@And("the admin submits the user form")
-public void submitUserFormStep() {
-    usersPage.submitUserForm();
+    @And("the admin submits the user form")
+    public void submitUserFormStep() {
+        usersPage.submitUserForm();
 
-    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(60));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(60));
 
-    try {
-        wait.until(ExpectedConditions.or(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'toast-success')]")),
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'toast-message') or contains(@class,'alert-danger')]"))
-        ));
-        System.out.println(" Either success or error message appeared after submit.");
-    } catch (TimeoutException e) {
-        System.out.println(" No success or error message appeared after submitting the form.");
+        try {
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'toast-success')]")),
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'toast-message') or contains(@class,'alert-danger')]"))
+            ));
+            System.out.println(" Either success or error message appeared after submit.");
+        } catch (TimeoutException e) {
+            System.out.println(" No success or error message appeared after submitting the form.");
+        }
     }
-}
 
     /* @When("the admin submits the user form")
     public void the_admin_submits_the_user_form() {
@@ -135,7 +135,7 @@ public void submitUserFormStep() {
                 usersPage.isErrorMessageDisplayed(message));
     }
 
-// Edit User Steps
+    // Edit User Steps
     @Then("the user {string} should not be present in the user list")
     public void the_user_should_not_be_present_in_the_user_list(String string) {
         // Write code here that turns the phrase above into concrete actions

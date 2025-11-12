@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "com.bazaarstores.stepDefinitions",
-        tags = "@US14 or @AddUser or @EditUser or @CancelDeleteUser or  @DeleteUser",
+        tags =  " @US14_TC001 or  @US14_TC002 or  @US14_TC003 or  @US15_TC001 or @US15_TC002 or @US15_TC003 or @US16_TC001 or @US16_TC002 or @CancelDeleteUser or @DeleteUser",
         dryRun = false
 )
 public class Runner {
