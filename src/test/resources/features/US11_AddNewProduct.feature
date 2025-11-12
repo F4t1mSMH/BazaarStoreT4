@@ -2,13 +2,11 @@
 Feature: Product Creation
   @Smoke @Regression
   Scenario: Create API product and verify UI functionality
-    # API SETUP
     Given a valid product payload is prepared
     When a POST request is sent to create the product via API
     Then the product is created successfully and product ID is stored
 
-    # UI VERIFICATION
-    Given the store Manager logged in on the dashboard page
+    #Given the store Manager logged in on the dashboard page
     And the Manager click on product page
 
     Then the product can be retrieved successfully via API using its ID

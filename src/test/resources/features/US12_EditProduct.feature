@@ -22,7 +22,6 @@ Feature: Product Edit
     And the Store Manager submits the product form
     Then an error message "The name field is required" should be displayed
 
-
   @Regression @Edit
   Scenario: Edit product and delete price
     When the Store Manager clicks the Edit button for the created product
@@ -30,14 +29,12 @@ Feature: Product Edit
     And the Store Manager submits the product form
     Then an error message "The price field is required" should be displayed
 
-
   @Regression @Edit
   Scenario: Edit product and delete stock
     When the Store Manager clicks the Edit button for the created product
     And the Store Manager edit product details and delete stock
     And the Store Manager submits the product form
     Then an error message "The stock field is required" should be displayed
-
 
   @Regression @Edit
   Scenario: Edit product and delete sku
