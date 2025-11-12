@@ -8,17 +8,30 @@ public class DashboardPage extends BasePage {
     // By Locators
     private final By dashboard = By.xpath("//div[@class='products-grid']");
     private final By profileVisitChart = By.xpath("//div[@class='card-body']");
+    //div[@class='logout']
     private final By welcomeMessage = By.cssSelector(".welcome-message, [class*='welcome']");
     private final By profileLink = By.cssSelector("a[href*='profile'], button:contains('Profile')");
     private final By ordersLink = By.cssSelector("a[href*='orders'], button:contains('Orders')");
     private final By productsLink = By.cssSelector("a[href*='products'], button:contains('Products')");
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
+    private final By logoutButton1 = By.linkText("Log Out");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
+    private final By prfileicon =By.xpath("//div[@class='profile-icon']");
 
 
     // Navigation Methods
     public void clickProfileLink() {
         click(profileLink);
+    }
+
+    public DashboardPage movetousericon(){
+    hoverOver(prfileicon);
+    return this;
+    }
+
+    public DashboardPage movetologoutButton(){
+        hoverOver(logoutButton1);
+        return this;
     }
 
     public void clickOrdersLink() {
@@ -30,7 +43,7 @@ public class DashboardPage extends BasePage {
     }
 
     public LoginPage clickLogout() {
-        click(logoutButton);
+        click(logoutButton1);
         return new LoginPage();
     }
 
