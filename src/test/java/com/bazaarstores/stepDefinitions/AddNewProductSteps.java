@@ -19,8 +19,9 @@ public class AddNewProductSteps {
     private final ProductsPage productsPage = new ProductsPage();
     private final AddProductPage addProductPage = new AddProductPage();
     private final Faker faker = new Faker();
-    private Response response;
     private final MangerScenarioContext context;
+    private Response response;
+
     public AddNewProductSteps(MangerScenarioContext context) {
         this.context = context;
     }
