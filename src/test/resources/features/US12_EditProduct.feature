@@ -4,7 +4,7 @@ Feature: Product Edit
     Given the store manger logged in on the dashboard page
     And the manger click on product page
 
-  @smoke @regression
+  @Smoke @Regression
   Scenario: Successful API edit and verification
     Given a valid product payload is prepared
     When a POST request is sent to create the product via API
@@ -17,7 +17,7 @@ Feature: Product Edit
 
     And the product can be retrieved successfully via API using its ID
 
-  @regression
+  @Regression
   Scenario: Edit product and delete name
     When the Store Manager clicks on the "Edit Product" button
     And the Store Manager edit product details delete name
@@ -25,7 +25,7 @@ Feature: Product Edit
     Then an error message "The name field is required" should be displayed
 
 
-  @regression
+  @Regression
   Scenario: Edit product and delete price
 
     When the Store Manager clicks on the "Edit Product" button
@@ -33,7 +33,7 @@ Feature: Product Edit
     And the Store Manager submits the product form
     Then an error message "The price field is required" should be displayed
 
-  @regression
+  @Regression
   Scenario: Edit product and delete stock to edit
     When the Store Manager clicks on the "Edit Product" button
     And the Store Manager edit product details and delete stock
@@ -41,7 +41,7 @@ Feature: Product Edit
 
     Then an error message "The stock field is required" should be displayed
 
-  @regression
+  @Regression
   Scenario: Edit product and delete sku to edit
     When the Store Manager clicks on the "Edit Product" button
     And the Store Manager edit product details and delete sku
