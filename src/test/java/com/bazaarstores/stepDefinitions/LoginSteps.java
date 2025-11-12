@@ -53,6 +53,12 @@ public class LoginSteps {
         Assert.assertTrue("Error message should be displayed",
                 allPages.getLoginPage().isErrorMessageDisplayed());
     }
+    @Then("user should see invalid email format validation message")
+    public void userShouldSeeInvalidEmailFormatValidationMessage() {
+        boolean isInvalidEmailWarningShown = allPages.getLoginPage().isInvalidEmailFormatMessageDisplayed();
+        Assert.assertTrue("Invalid email format message should be displayed", isInvalidEmailWarningShown);
+    }
+
 
     @Then("user should remain on login page")
     public void user_should_remain_on_login_page() {
