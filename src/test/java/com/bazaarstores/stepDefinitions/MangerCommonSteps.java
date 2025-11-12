@@ -91,14 +91,6 @@ public class MangerCommonSteps {
                 isMessageVisible
         );
     }
-    //edit step
-    @When("the Store Manager clicks the Edit button for the created product")
-    public void theStoreManagerClicksTheEditButtonForTheCreatedProduct() {
-        String productName = MangerScenarioContext.productToVerifyName;
 
-        productsPage.clickEditButtonByName(productName);
-
-        addProductPage.waitForFormToLoad();
-    }
 
 }

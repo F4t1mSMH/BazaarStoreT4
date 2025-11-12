@@ -17,24 +17,29 @@ public class EditProductSteps {
     private final ProductsPage productsPage = new ProductsPage();
     private final Faker faker = new Faker();
     private Response response;
+    private final MangerScenarioContext context;
+
+    public EditProductSteps(MangerScenarioContext context) {
+        this.context = context;
+    }
 
 
     @Given("edited product details are generated")
     public void editedProductDetailsAreGenerated() {
         String newProductName = faker.commerce().productName() + " (EDITED)";
 
-        MangerScenarioContext.productPayload.put("name", newProductName);
-        MangerScenarioContext.productPayload.put("price", 50.99);
-        MangerScenarioContext.productToVerifyName = newProductName;
+        context.productPayload.put("name", newProductName);
+        context.productPayload.put("price", 50.99);
+        context.productToVerifyName = newProductName;
 
-        System.out.println("Payload fields being sent for PUT: " + MangerScenarioContext.productPayload);
+        System.out.println("Payload fields being sent for PUT: " + context.productPayload);
     }
 
     @When("a PUT request is sent to update the product via API")
     public void aPATCHRequestIsSentToUpdateTheProductViaAPI() {
         response = given(ApiUtilities.spec())
-                .body(MangerScenarioContext.productPayload)
-                .put("/products/" + MangerScenarioContext.productId);
+                .body(context.productPayload)
+                .put("/products/" + context.productId);
 
         response.prettyPrint();
         response.then().statusCode(200);
@@ -42,32 +47,41 @@ public class EditProductSteps {
         String updatedName = response.jsonPath().getString("product.name");
 
         Assert.assertEquals("The name in the API response does not match the expected edited name.",
-                MangerScenarioContext.productToVerifyName, updatedName);
+                context.productToVerifyName, updatedName);
     }
 
     @Then("the product details should be updated successfully via API")
     public void theProductDetailsShouldBeUpdatedSuccessfullyViaAPI() {
-        System.out.println("Product ID " + MangerScenarioContext.productId + " successfully updated via API.");
+        System.out.println("Product ID " + context.productId + " successfully updated via API.");
     }
 
 
     @And("the Store Manager edit product details")
     public void theStoreManagerEditProductDetails() {
-        MangerScenarioContext.editedProductName = faker.commerce().productName();
+        context.editedProductName = faker.commerce().productName();
         int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
         int newStock = faker.number().numberBetween(10, 500);
 
         // Note: Assumes SKU is either not edited or handled elsewhere.
         addProductPage
-                .enterProductName(MangerScenarioContext.editedProductName)
+                .enterProductName(context.editedProductName)
                 .enterProductPrice(newPrice)
                 .enterProductStock(newStock);
+    }
+    //edit step
+    @When("the Store Manager clicks the Edit button for the created product")
+    public void theStoreManagerClicksTheEditButtonForTheCreatedProduct() {
+        String productName = context.productToVerifyName;
+
+        productsPage.clickEditButtonByName(productName);
+
+        addProductPage.waitForFormToLoad();
     }
 
     @Then("the edited product should appear in the product list")
     public void theEditedProductShouldAppearInTheProductList() {
-        Assert.assertTrue("The edited product '" + MangerScenarioContext.editedProductName + "' is not displayed in the product list table.",
-                productsPage.isProductDisplayed(MangerScenarioContext.editedProductName));
+        Assert.assertTrue("The edited product '" + context.editedProductName + "' is not displayed in the product list table.",
+                productsPage.isProductDisplayed(context.editedProductName));
     }
 
 
