@@ -1,10 +1,10 @@
-@Manger @delete
+@Manger @Delete
 Feature: Product Deletion
   Background:
     Given the store manger logged in on the dashboard page
     And the manger click on product page
 
-  @smoke @regression
+  @Smoke @Regression
   Scenario: Successful API delete and verification
     Given a valid product payload is prepared
     When a POST request is sent to create the product via API
@@ -13,7 +13,7 @@ Feature: Product Deletion
     When a DELETE request is sent to delete the product via API
     Then the product is deleted successfully via API
 
-  @regression
+  @Regression
   Scenario: Successful delete a product as a store manager
     Given a product is created successfully via API and its ID is available
     When the Store Manager searches for the newly created product by name
@@ -22,7 +22,7 @@ Feature: Product Deletion
     Then a success message "Product Deleted successfully!" should be displayed
     And the product should not be visible on the Products page
 
-  @regression
+  @Regression
   Scenario: Successful cancel delete operation as a store manager
     Given a product is created successfully via API and its ID is available
     When the Store Manager searches for the newly created product by name
