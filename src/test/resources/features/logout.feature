@@ -1,4 +1,4 @@
-@Logout
+@Logout @Smoke
 Feature: Logout Functionality
   Background:
     Given user goes to dashboard page

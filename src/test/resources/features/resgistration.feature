@@ -15,7 +15,7 @@ Feature: Registration Feature
     Then user should see success message for registration
     And assert the registration via API
 
-  @NegativeRegistration @invalidEmail
+  @Smoke @invalidEmail
   Scenario: Registration Negative
     And user enters email for sign up "invalid_email.com"
     And user enters full name for sign up "John Doe"
@@ -69,7 +69,7 @@ Feature: Registration Feature
     And user clicks the sing up button
     Then user should see password do not match error message
 
-  @NegativeRegistration @invalidName1
+  @Smoke @invalidName1
   Scenario: Registration Negative 5
     And user enters email for sign up "faker"
     And user enters full name for sign up with special caracter "John Doe@"
