@@ -152,4 +152,5 @@ public class AddNewProductSteps {
                 .enterProductStock(faker.number().numberBetween(10, 500))
                 .enterProductSKU(Integer.parseInt(MangerScenarioContext.DUPLICATE_SKU)); // Using the constant
     }
+
 }

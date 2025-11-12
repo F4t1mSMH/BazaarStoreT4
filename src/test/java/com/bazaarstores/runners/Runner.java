@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "com.bazaarstores.stepDefinitions",
-        tags = " @Regression and @Edit" ,
+        tags = "@Regression and @Delete" ,
         dryRun = false
 )
 public class Runner {
