@@ -19,12 +19,12 @@ public class AddNewProductSteps {
     private final ProductsPage productsPage = new ProductsPage();
     private final AddProductPage addProductPage = new AddProductPage();
     private final Faker faker = new Faker();
-    private final MangerScenarioContext context;
     private Response response;
-
-    public AddNewProductSteps() {
-        this.context = new MangerScenarioContext();
+    private final MangerScenarioContext context;
+    public AddNewProductSteps(MangerScenarioContext context) {
+        this.context = context;
     }
+
     @Given("a valid product payload is prepared")
     public void aValidProductPayloadIsPrepared() {
         String uniqueProductName = "API" + faker.commerce().productName();
