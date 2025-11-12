@@ -25,8 +25,8 @@ public class MangerCommonSteps {
     }
 
     // background start
-    @Before("@Manger")
-    @Given("the store manger logged in on the dashboard page")
+    @Before("@Manager")
+    @Given("the store Manager logged in on the dashboard page")
     public void theStoreMangerLoggedInOnTheDashboardPage() {
         pages.getLoginPage()
                 .enterEmail(ConfigReader.getStoreManagerEmail())
@@ -34,9 +34,10 @@ public class MangerCommonSteps {
         pages.getLoginPage().clickLoginButton();
     }
 
-    @And("the manger click on product page")
+    @And("the Manager click on product page")
     public void theMangerClickOnProductPage() {
         pages.getDashboardPage().clickMangerProductsLink();
+        productsPage.waitForProductsPageToLoad();
 
     }
     // background end

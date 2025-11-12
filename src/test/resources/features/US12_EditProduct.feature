@@ -1,8 +1,8 @@
-@Manger
+@Manager
 Feature: Product Edit
   Background:
-    Given the store manger logged in on the dashboard page
-    And the manger click on product page
+    Given the store Manager logged in on the dashboard page
+    And the Manager click on product page
 
   @Smoke @Regression
   Scenario: Successful API edit and verification
