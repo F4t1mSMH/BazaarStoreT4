@@ -67,7 +67,7 @@ public class AddNewProductSteps {
     public void theProductCanBeRetrievedSuccessfullyViaAPIUsingItsID() {
         Response response = given(ApiUtilities.spec())
                 .when()
-                .get("/products/" + context.productId);
+                .get("/products/" +context.productId + "/");
 
         response.then().statusCode(200);
         String retrievedName = response.jsonPath().getString("name");
