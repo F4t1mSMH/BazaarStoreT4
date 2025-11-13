@@ -50,6 +50,7 @@ public abstract class BasePage {
         element.sendKeys(text);
     }
 
+
     public void sendKeysWithJS(By locator, String text) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("arguments[0].value='" + text + "';", findElement(locator));
@@ -59,6 +60,7 @@ public abstract class BasePage {
     public void waitForElementToBeVisible(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
 
     public void waitForElementToBeClickable(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));

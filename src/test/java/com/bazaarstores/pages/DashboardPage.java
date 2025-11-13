@@ -1,7 +1,6 @@
 package com.bazaarstores.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class DashboardPage extends BasePage {
 
@@ -14,6 +13,7 @@ public class DashboardPage extends BasePage {
     private final By productsLink = By.cssSelector("a[href*='products'], button:contains('Products')");
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
+    private final By StoresButton = By.linkText("Store");
 
 
     // Navigation Methods
@@ -32,6 +32,10 @@ public class DashboardPage extends BasePage {
     public LoginPage clickLogout() {
         click(logoutButton);
         return new LoginPage();
+    }
+    public StoresPage clickStores() {
+        click(StoresButton);
+        return new StoresPage();
     }
 
     // Verification Methods

@@ -17,6 +17,7 @@ public class Hooks {
 //    }
 
     @After
+
     public void tearDown(Scenario scenario) {
         // Take screenshot on failure
         if (scenario.isFailed()) {
@@ -27,6 +28,10 @@ public class Hooks {
         
         System.out.println("Finished scenario: " + scenario.getName() + 
                           " - Status: " + scenario.getStatus());
+
+        if (!scenario.getSourceTagNames().contains("@KeepBrowser")) {
+            Driver.quitDriver();
+        }
         
         Driver.quitDriver();
     }
