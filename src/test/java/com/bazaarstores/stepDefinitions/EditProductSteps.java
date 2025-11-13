@@ -1,0 +1,131 @@
+package com.bazaarstores.stepDefinitions;
+
+import static io.restassured.RestAssured.given;
+import com.bazaarstores.pages.AddProductPage;
+import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import com.bazaarstores.pages.ProductsPage;
+import com.bazaarstores.utilities.ApiUtilities;
+import io.restassured.response.Response;
+import org.junit.Assert;
+
+public class EditProductSteps {
+    private final AddProductPage addProductPage = new AddProductPage();
+    private final ProductsPage productsPage = new ProductsPage();
+    private final Faker faker = new Faker();
+    private Response response;
+    private final MangerScenarioContext context;
+
+    public EditProductSteps(MangerScenarioContext context) {
+        this.context = context;
+    }
+
+
+    @Given("edited product details are generated")
+    public void editedProductDetailsAreGenerated() {
+        String newProductName = faker.commerce().productName() + " (EDITED)";
+
+        context.productPayload.put("name", newProductName);
+        context.productPayload.put("price", 50.99);
+        context.productToVerifyName = newProductName;
+
+        System.out.println("Payload fields being sent for PUT: " + context.productPayload);
+    }
+
+    @When("a PUT request is sent to update the product via API")
+    public void aPATCHRequestIsSentToUpdateTheProductViaAPI() {
+        response = given(ApiUtilities.spec())
+                .body(context.productPayload)
+                .put("/products/" + context.productId);
+
+        response.prettyPrint();
+        response.then().statusCode(200);
+
+        String updatedName = response.jsonPath().getString("product.name");
+
+        Assert.assertEquals("The name in the API response does not match the expected edited name.",
+                context.productToVerifyName, updatedName);
+    }
+
+    @Then("the product details should be updated successfully via API")
+    public void theProductDetailsShouldBeUpdatedSuccessfullyViaAPI() {
+        System.out.println("Product ID " + context.productId + " successfully updated via API.");
+    }
+
+
+    @And("the Store Manager edit product details")
+    public void theStoreManagerEditProductDetails() {
+        context.editedProductName = faker.commerce().productName();
+        int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
+        int newStock = faker.number().numberBetween(10, 500);
+
+        // Note: Assumes SKU is either not edited or handled elsewhere.
+        addProductPage
+                .enterProductName(context.editedProductName)
+                .enterProductPrice(newPrice)
+                .enterProductStock(newStock);
+    }
+    //edit step
+    @When("the Store Manager clicks the Edit button for the created product")
+    public void theStoreManagerClicksTheEditButtonForTheCreatedProduct() {
+        String productName = context.productToVerifyName;
+
+        productsPage.clickEditButtonByName(productName);
+
+        addProductPage.waitForFormToLoad();
+    }
+
+    @Then("the edited product should appear in the product list")
+    public void theEditedProductShouldAppearInTheProductList() {
+        Assert.assertTrue("The edited product '" + context.editedProductName + "' is not displayed in the product list table.",
+                productsPage.isProductDisplayed(context.editedProductName));
+    }
+
+
+    @And("the Store Manager edit product details delete name")
+    public void theStoreManagerEditProductDetailsDeleteName() {
+
+        int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
+        int newStock = faker.number().numberBetween(10, 500);
+        addProductPage
+                .enterProductName("")
+                .enterProductPrice(newPrice)
+                .enterProductStock(newStock);
+    }
+
+
+    @And("the Store Manager edit product details and delete price")
+    public void theStoreManagerEditProductDetailsAndDeletePrice() {
+        String newName = faker.commerce().productName();
+        int newStock = faker.number().numberBetween(10, 500);
+        addProductPage
+                .enterProductName(newName)
+                .clearProductPrice()
+                .enterProductStock(newStock);
+    }
+
+
+    @And("the Store Manager edit product details and delete stock")
+    public void theStoreManagerEditProductDetailsAndDeleteStock() {
+        String newName = faker.commerce().productName();
+        int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
+        addProductPage
+                .enterProductName(newName)
+                .enterProductPrice(newPrice)
+                .clearProductStock();
+    }
+
+    @And("the Store Manager edit product details and delete sku")
+    public void theStoreManagerEditProductDetailsAndDeleteSku() {
+        String newName = faker.commerce().productName();
+        int newPrice = (int) Double.parseDouble(faker.commerce().price(500.00, 2000.00));
+        addProductPage
+                .enterProductName(newName)
+                .enterProductPrice(newPrice)
+                .clearProductSku();
+    }
+    //Negative Edit end
+}

@@ -18,6 +18,7 @@ public class DashboardPage extends BasePage {
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
     private final By logoutButton1 = By.linkText("Log Out");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
+    private final By mangerProductsLink = By.xpath("//a[contains(@href, 'products') or contains(., 'Products')]");
 
     private final By addToCartButtons = By.cssSelector("button.add-to-cart, button[data-action='add-to-cart']"); // ✅ buttons for adding products
     private final By successMessage = By.cssSelector(".toast-message, .success-message, [class*='added-successfully']");
@@ -46,6 +47,10 @@ public class DashboardPage extends BasePage {
 
     public void clickProductsLink() {
         click(productsLink);
+    }
+
+    public void clickMangerProductsLink() {
+        clickWithJS(mangerProductsLink);
     }
 
     public LoginPage clickLogout() {

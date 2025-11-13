@@ -58,6 +58,12 @@
             <version>2.20.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>7.14.0</version> <scope>test</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -203,5 +209,7 @@
             </properties>
         </profile>
     </profiles>
+
+
 
 </project>
