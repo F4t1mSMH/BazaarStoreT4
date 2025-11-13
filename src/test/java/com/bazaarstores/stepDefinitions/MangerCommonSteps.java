@@ -5,12 +5,20 @@ import com.bazaarstores.pages.AllPages;
 import com.bazaarstores.pages.DashboardPage;
 import com.bazaarstores.pages.ProductsPage;
 import com.bazaarstores.utilities.ConfigReader;
+import com.bazaarstores.utilities.Driver;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MangerCommonSteps {
     private final ProductsPage productsPage = new ProductsPage();
@@ -90,7 +98,17 @@ public class MangerCommonSteps {
                 "The unexpected success message '" + expectedMessage + "' was displayed after API creation.",
                 isMessageVisible
         );
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
+            try {
+                WebElement successToast = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//*[contains(@class,'toast-success') or contains(text(),'" + expectedMessage + "')]")
+                ));
+                Assert.assertTrue("✅ Success message is displayed.", successToast.isDisplayed());
+                System.out.println(" Success message: " + successToast.getText());
+            } catch (TimeoutException e) {
+                Assert.fail(" Expected success message not found: " + expectedMessage);
+            }
+        }
     }
 
 
-}
