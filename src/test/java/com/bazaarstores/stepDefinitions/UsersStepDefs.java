@@ -172,19 +172,19 @@ public class UsersStepDefs {
         usersPage.clickSaveButton();
     }
 
-    @Then("a success message {string} should be displayed")
-    public void a_success_message_should_be_displayed(String expectedMessage) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
-        try {
-            WebElement successToast = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//*[contains(@class,'toast-success') or contains(text(),'" + expectedMessage + "')]")
-            ));
-            Assert.assertTrue("✅ Success message is displayed.", successToast.isDisplayed());
-            System.out.println(" Success message: " + successToast.getText());
-        } catch (TimeoutException e) {
-            Assert.fail(" Expected success message not found: " + expectedMessage);
-        }
-    }
+//    @Then("a success message {string} should be displayed")
+//    public void a_success_message_should_be_displayed(String expectedMessage) {
+//        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
+//        try {
+//            WebElement successToast = wait.until(ExpectedConditions.visibilityOfElementLocated(
+//                    By.xpath("//*[contains(@class,'toast-success') or contains(text(),'" + expectedMessage + "')]")
+//            ));
+//            Assert.assertTrue("✅ Success message is displayed.", successToast.isDisplayed());
+//            System.out.println(" Success message: " + successToast.getText());
+//        } catch (TimeoutException e) {
+//            Assert.fail(" Expected success message not found: " + expectedMessage);
+//        }
+//    }
     @Then("the message {string} is displayed")
     public void the_message_is_displayed(String expectedMessage) {
         boolean displayed = usersPage.waitForNoUserFoundMessage(10); // انتظري حتى 10 ثواني
