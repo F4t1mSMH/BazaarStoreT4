@@ -32,6 +32,13 @@ public class ConfigReader {
     public static String getBaseUrl() {
         return properties.getProperty("base.url");
     }
+    public static String getStoreName() {
+        return properties.getProperty("test.store.name");
+    }
+    public static String getStoreNewName() {return properties.getProperty("test.store.new.name");}
+    public static String getStoreDes() {
+        return properties.getProperty("test.store.description");
+    }
 
     public static String getApiBaseUrl() {
         return properties.getProperty("api.base.url");
