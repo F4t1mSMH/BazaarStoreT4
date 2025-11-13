@@ -1,6 +1,5 @@
 package com.bazaarstores.stepDefinitions;
 
-
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
@@ -17,7 +16,6 @@ import static org.junit.Assert.assertNull;
 
 public class ApiSteps {
 
-
     @When("assert the registration via API")
     public void assertTheRegistrationViaAPI() {
         Response response = given(spec()).get("/users");
@@ -28,7 +26,6 @@ public class ApiSteps {
         assertEquals(email, actualEmail);
         assertEquals(fullName, actualName);
     }
-
 
     @And("assert the negative registration via API using email {string}")
     public void assertTheNegativeRegistrationViaAPIUsingEmail(String email) {

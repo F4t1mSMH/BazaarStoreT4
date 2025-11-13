@@ -33,7 +33,20 @@ public class Hooks {
         
         Driver.quitDriver();
     }
+    @Before("@CustomerUI")
+    public void loginBeforeCustomerTests() throws InterruptedException {
+        System.out.println("Logging in before running customer scenario...");
 
+        Driver.getDriver().get(ConfigReader.getBaseUrl() + "/login");
 
+        allPages.getLoginPage().login(
+                ConfigReader.getCustomerEmail(),
+                ConfigReader.getDefaultPassword()
+        );
+             Thread.sleep(3000);
+        allPages.getCustomerPage().isCustomerPageDisplayed();
+
+        System.out.println(" Login successful");
     }
 
+}
