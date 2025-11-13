@@ -15,6 +15,7 @@ public class Hooks {
     public void setUp(Scenario scenario) {
         System.out.println("Starting scenario: " + scenario.getName());
         Driver.getDriver().get(ConfigReader.getBaseUrl());
+
     }
 
 
