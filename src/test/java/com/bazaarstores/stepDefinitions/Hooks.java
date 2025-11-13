@@ -11,11 +11,13 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
     AllPages allPages = new AllPages();
-//    @Before
-//    public void setUp(Scenario scenario) {
-//        System.out.println("Starting scenario: " + scenario.getName());
-//        Driver.getDriver().get(ConfigReader.getBaseUrl());
-//    }
+    @Before
+    public void setUp(Scenario scenario) {
+        System.out.println("Starting scenario: " + scenario.getName());
+        Driver.getDriver().get(ConfigReader.getBaseUrl());
+
+    }
+
 
     @After
 
