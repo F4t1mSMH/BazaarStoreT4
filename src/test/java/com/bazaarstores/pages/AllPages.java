@@ -13,6 +13,7 @@ public class AllPages {
     private CustomerFavoritesPage customerFavoritesPage;
     private ViewCartPage viewCartPage;
 
+
     public LoginPage getLoginPage() {
         if (loginPage == null) {
             loginPage = new LoginPage();
