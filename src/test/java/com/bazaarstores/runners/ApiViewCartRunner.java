@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json",
                 "junit:target/cucumber.xml"
         },
-        features = "src/test/resources/features/viewCartAPI.feature",
+         features = "src/test/resources/features",
         glue = "com/bazaarstores/stepDefinitions",
         tags = "@CustomerCartAPI",
         dryRun = false,
