@@ -18,7 +18,7 @@ public class ApiUtilities {
                 .setBaseUri(ConfigReader.getApiBaseUrl())
                 .setContentType(ContentType.JSON)
                 .addHeader("Accept", "application/json")
-                .addHeader("Authorization", "Bearer " + getCustomerToken() )
+                .addHeader("Authorization", "Bearer " + getToken() )
                 .build();
     }
 
@@ -43,16 +43,6 @@ public class ApiUtilities {
             throw new RuntimeException("API login failed during getToken(). Check credentials/config.");
         }
 
-    }
-    private static String getCustomerToken() {
-        Map payload = new HashMap();
-        payload.put("email", ConfigReader.getCustomerEmail());
-        payload.put("password", ConfigReader.getDefaultPassword());
-        Response response = given()
-                .body(payload)
-                .contentType(ContentType.JSON)
-                .post(ConfigReader.getApiBaseUrl() + "/login");
-        return response.jsonPath().getString("authorisation.token");
     }
 
 }
