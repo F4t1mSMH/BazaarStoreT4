@@ -60,7 +60,8 @@ public class DashboardPage extends BasePage {
     }
 
     public StoresPage clickStores() {
-        click(StoresButton);
+
+        clickWithJS(StoresButton);
         return new StoresPage();
     }
 
