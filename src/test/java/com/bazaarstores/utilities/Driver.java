@@ -21,7 +21,12 @@ public class Driver {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
                     if (ConfigReader.isHeadless()) {
-                        chromeOptions.addArguments("--headless");
+                        chromeOptions.addArguments("--headless=new");
+                        chromeOptions.addArguments("--window-size=1920,1080");
+                        chromeOptions.addArguments("--disable-gpu");
+                        chromeOptions.addArguments("--no-sandbox");
+                        chromeOptions.addArguments("--disable-dev-shm-usage");
+                        chromeOptions.addArguments("--remote-allow-origins=*");
                     }
                     chromeOptions.addArguments("--start-maximized");
                     chromeOptions.addArguments("--disable-notifications");
