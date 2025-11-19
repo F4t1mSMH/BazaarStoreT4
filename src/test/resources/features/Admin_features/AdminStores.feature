@@ -6,13 +6,13 @@ Feature: View all stores in the system as an Admin.
     And user clicks login button
     Then admin should be logged in successfully
 
-  @Admin1 @Smoke
+  @Admin1 @smoke
   Scenario: Verify Admin can view all stores list
     When Navigate to Stores page.
     Then All existing stores are displayed correctly with Name, Description, Location, and Admins.
 
 
-  @Admin2 @Smoke
+  @Admin2 @smoke
   Scenario Outline: Verify adding a new store with valid data
     When Navigate to Stores page.
     And Navigate to Add Store page
@@ -51,7 +51,7 @@ Feature: View all stores in the system as an Admin.
       | Test Store   |                    | Riyadh   | Store Manager |
       | Test Store   | Electronics store  |          | Store Manager |
 
-  @Admin4 @Smoke
+  @Admin4 @smoke
   Scenario: Verify successful update of store details
     When Navigate to Stores page.
     And Click Edit for an existing store.
@@ -59,12 +59,12 @@ Feature: View all stores in the system as an Admin.
     And Click Save
     Then The store is successfully update to the list, and a confirmation message is displayed.
 
-  @Admin5 @Smoke
+  @Admin5 @smoke
   Scenario: Verify updated data reflects in the list after saving.
     When Navigate to Stores page.
     And Check the updated store.
 
-  @Admin6 @Smoke
+  @Admin6 @smoke
   Scenario: Verify error for missing/invalid inputs during edit.
     When Navigate to Stores page.
     And Click Edit for an updated store.
@@ -75,7 +75,7 @@ Feature: View all stores in the system as an Admin.
       |  Jeddah Tec store | Electronics store |          | Store Manager |
       | Jeddah Tec store  | Electronics store |   Riyadh |               |
 
-  @Admin7 @Smoke
+  @Admin7 @smoke
   Scenario: Verify delete confirmation dialog appears and Verify canceling deletion keeps the store intact.
     When Navigate to Stores page.
     And Click Delete on a store.
@@ -83,7 +83,7 @@ Feature: View all stores in the system as an Admin.
     And Click Cancel in confirmation dialog.
     Then Confirm store remains in the list.
 
-  @Admin8 @Smoke
+  @Admin8 @smoke
   Scenario: Verify delete confirmation dialog appears and store is deleted after confirming deletion.
     When Navigate to Stores page.
     And Click Delete on a store.
